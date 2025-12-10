@@ -1,0 +1,37 @@
+entities:
+  - entity-name: "Order"
+    lobs:
+      - "dabur"
+    kafka-topic: "order.changed"
+    iceberg-table: "orders"
+    output-class: "OrderIcebergEntity"
+    runtime-minutes: 10
+    fields:
+      - field-path: "orderId"
+        type : "String"
+        sub-fields: null
+      - field-path: "outletCode"
+        type: "String"
+        sub-fields: null
+      - field-path: "creationTime"
+        type: "String"
+        sub-fields: null
+      - field-path: "status"
+        type: "String"
+        sub-fields: null
+      - field-path: "orderDetails"
+        type: "List"
+        sub-fields:
+          - field-path: "skuCode"
+            type: "String"
+            sub-fields: null
+          - field-path: "initialAmount"
+            type: "String"
+            sub-fields: null
+          - field-path: "initialQuantity"
+            type: "String"
+            sub-fields: null
+    partition-keys:
+      - "status"
+      - "creationTime"
+    enabled: true
