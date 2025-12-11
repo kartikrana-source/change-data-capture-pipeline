@@ -31,6 +31,7 @@ public class Main {
             StreamExecutionEnvironment environment = consumer.read(config);
             try {
                 JobClient client = environment.executeAsync();
+                
                 long millis = config.getRuntimeMinutes() * 60 * 1000;
                 try {
                     var accumulators = client.getAccumulators().get(5, TimeUnit.SECONDS);
